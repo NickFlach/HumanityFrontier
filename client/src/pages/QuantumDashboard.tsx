@@ -54,7 +54,7 @@ function QuantumKeyManager() {
       const keyData = {
         userId,
         keyId: `qk-${Math.random().toString(36).substring(2, 9)}`,
-        entropyLevel: parseFloat(entropyLevel),
+        entropyLevel: entropyLevel, // Send as string to match schema
         superpositionState
       };
       
@@ -411,7 +411,7 @@ function QuantumEntanglement() {
       const entanglementTypes = ["direct", "indirect", "temporal"];
       const entanglementType = entanglementTypes[Math.floor(Math.random() * entanglementTypes.length)];
       
-      const entanglementStrength = (0.7 + Math.random() * 0.3).toFixed(2);
+      const entanglementStrength = (0.7 + Math.random() * 0.3).toFixed(2); // Already a string due to toFixed
       
       const entanglementData = {
         sourceKeyId,
