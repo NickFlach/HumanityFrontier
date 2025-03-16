@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Atom, Key, BookOpen, Network } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import MainLayout from "@/layouts/MainLayout";
-import { apiRequest } from "@/lib/queryClient";
+import { apiRequest, queryClient } from "@/lib/queryClient";
 import QuantumShield from "@/components/quantum/QuantumShield";
 import CipherVisualization from "@/components/quantum/CipherVisualization";
 import { quantum } from "@/lib/animations";
@@ -26,9 +26,17 @@ import { quantum } from "@/lib/animations";
 function QuantumKeyManager() {
   const [userId, setUserId] = useState<number>(1); // Default to user 1 for testing
 
-  const { data: keys, isLoading } = useQuery({
+  const { data: keys = [], isLoading, refetch: refetchKeys } = useQuery({
     queryKey: ['/api/quantum/keys/user', userId],
-    queryFn: () => apiRequest(`/api/quantum/keys/user/${userId}`),
+    queryFn: async ({ queryKey }) => {
+      const res = await fetch(`/api/quantum/keys/user/${userId}`, {
+        credentials: "include"
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch keys");
+      }
+      return res.json();
+    }
   });
 
   const generateNewKey = async () => {
@@ -50,19 +58,21 @@ function QuantumKeyManager() {
         superpositionState
       };
       
-      const response = await apiRequest("/api/quantum/keys", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(keyData)
-      });
+      const response = await apiRequest(
+        "POST",
+        "/api/quantum/keys",
+        keyData
+      );
+      
+      const data = await response.json();
       
       toast({
         title: "Quantum Key Generated",
-        description: `New key created with ID: ${response.keyId}`,
+        description: `New key created with ID: ${data?.keyId || 'unknown'}`,
       });
       
       // Refetch keys
-      await keys?.refetch();
+      refetchKeys();
       
     } catch (error) {
       console.error("Error generating quantum key:", error);
@@ -76,9 +86,10 @@ function QuantumKeyManager() {
 
   const revokeKey = async (keyId: string) => {
     try {
-      await apiRequest(`/api/quantum/keys/${keyId}/revoke`, {
-        method: "PUT"
-      });
+      await apiRequest(
+        "PUT",
+        `/api/quantum/keys/${keyId}/revoke`
+      );
       
       toast({
         title: "Quantum Key Revoked",
@@ -86,7 +97,7 @@ function QuantumKeyManager() {
       });
       
       // Refetch keys
-      await keys?.refetch();
+      refetchKeys();
       
     } catch (error) {
       console.error("Error revoking quantum key:", error);
@@ -176,16 +187,32 @@ function QuantumKeyManager() {
 // Quantum Ledger Component
 function QuantumLedger() {
   const [selectedKeyId, setSelectedKeyId] = useState<string | null>(null);
-  const { data: keys, isLoading: keysLoading } = useQuery({
-    queryKey: ['/api/quantum/keys/user', 1],
-    queryFn: () => apiRequest('/api/quantum/keys/user/1'),
+  
+  const { data: keys = [], isLoading: keysLoading } = useQuery({
+    queryKey: ['/api/quantum/keys/user/1'],
+    queryFn: async ({ queryKey }) => {
+      const res = await fetch(queryKey[0] as string, {
+        credentials: "include"
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch keys");
+      }
+      return res.json();
+    }
   });
 
-  const { data: ledgerEntries, isLoading: ledgerLoading } = useQuery({
+  const { data: ledgerEntries = [], isLoading: ledgerLoading, refetch: refetchLedger } = useQuery({
     queryKey: ['/api/quantum/ledger/key', selectedKeyId],
-    queryFn: () => selectedKeyId 
-      ? apiRequest(`/api/quantum/ledger/key/${selectedKeyId}`)
-      : Promise.resolve([]),
+    queryFn: async ({ queryKey }) => {
+      if (!selectedKeyId) return [];
+      const res = await fetch(`/api/quantum/ledger/key/${selectedKeyId}`, {
+        credentials: "include"
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch ledger entries");
+      }
+      return res.json();
+    },
     enabled: !!selectedKeyId
   });
 
@@ -212,11 +239,11 @@ function QuantumLedger() {
         metadata: { status: "success", complexity: Math.floor(Math.random() * 10) + 1 }
       };
       
-      await apiRequest("/api/quantum/ledger", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(ledgerData)
-      });
+      await apiRequest(
+        "POST",
+        "/api/quantum/ledger",
+        ledgerData
+      );
       
       toast({
         title: "Operation Recorded",
@@ -224,7 +251,7 @@ function QuantumLedger() {
       });
       
       // Refetch ledger entries
-      await ledgerEntries?.refetch();
+      refetchLedger();
       
     } catch (error) {
       console.error("Error recording quantum operation:", error);
@@ -333,16 +360,31 @@ function QuantumEntanglement() {
   const [sourceKeyId, setSourceKeyId] = useState<string | null>(null);
   const [targetKeyId, setTargetKeyId] = useState<string | null>(null);
   
-  const { data: keys, isLoading: keysLoading } = useQuery({
-    queryKey: ['/api/quantum/keys/user', 1],
-    queryFn: () => apiRequest('/api/quantum/keys/user/1'),
+  const { data: keys = [], isLoading: keysLoading } = useQuery({
+    queryKey: ['/api/quantum/keys/user/1'],
+    queryFn: async ({ queryKey }) => {
+      const res = await fetch(queryKey[0] as string, {
+        credentials: "include"
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch keys");
+      }
+      return res.json();
+    }
   });
 
-  const { data: entanglements, isLoading: entanglementsLoading, refetch: refetchEntanglements } = useQuery({
+  const { data: entanglements = [], isLoading: entanglementsLoading, refetch: refetchEntanglements } = useQuery({
     queryKey: ['/api/quantum/entanglements/key', sourceKeyId],
-    queryFn: () => sourceKeyId 
-      ? apiRequest(`/api/quantum/entanglements/key/${sourceKeyId}`)
-      : Promise.resolve([]),
+    queryFn: async ({ queryKey }) => {
+      if (!sourceKeyId) return [];
+      const res = await fetch(`/api/quantum/entanglements/key/${sourceKeyId}`, {
+        credentials: "include"
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch entanglements");
+      }
+      return res.json();
+    },
     enabled: !!sourceKeyId
   });
 
@@ -388,11 +430,11 @@ function QuantumEntanglement() {
         expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7) // Expires in 7 days
       };
       
-      await apiRequest("/api/quantum/entanglements", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(entanglementData)
-      });
+      await apiRequest(
+        "POST",
+        "/api/quantum/entanglements",
+        entanglementData
+      );
       
       toast({
         title: "Quantum Entanglement Created",
@@ -539,54 +581,52 @@ function QuantumEntanglement() {
 
 export default function QuantumDashboard() {
   return (
-    <MainLayout>
-      <div className="container py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row gap-6 md:items-center mb-8">
-          <div className="relative w-24 h-24 flex-shrink-0 mx-auto md:mx-0">
-            <QuantumShield size={96} animated />
-          </div>
-          
-          <div className="text-center md:text-left">
-            <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#4cc9f0] to-[#7b2cbf] inline-block">
-              Quantum Shield Database
-            </h1>
-            <p className="text-[#4cc9f0]/80 mt-2 max-w-3xl">
-              Manage your quantum cryptographic assets, track quantum operations, and visualize quantum entanglements.
-            </p>
-          </div>
+    <div className="container py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div className="flex flex-col md:flex-row gap-6 md:items-center mb-8">
+        <div className="relative w-24 h-24 flex-shrink-0 mx-auto md:mx-0">
+          <QuantumShield size={96} animated />
         </div>
         
-        <Tabs defaultValue="keys" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8">
-            <TabsTrigger value="keys" className="data-[state=active]:bg-[#16213e] data-[state=active]:text-[#4cc9f0]">
-              <Key className="mr-2 h-4 w-4" />
-              Quantum Keys
-            </TabsTrigger>
-            <TabsTrigger value="ledger" className="data-[state=active]:bg-[#16213e] data-[state=active]:text-[#4cc9f0]">
-              <BookOpen className="mr-2 h-4 w-4" />
-              Quantum Ledger
-            </TabsTrigger>
-            <TabsTrigger value="entanglement" className="data-[state=active]:bg-[#16213e] data-[state=active]:text-[#4cc9f0]">
-              <Network className="mr-2 h-4 w-4" />
-              Entanglement
-            </TabsTrigger>
-          </TabsList>
-          
-          <div className="bg-[#0c1120]/50 p-6 rounded-lg shadow-lg backdrop-blur-sm border border-[#4cc9f0]/10">
-            <TabsContent value="keys" className="mt-0">
-              <QuantumKeyManager />
-            </TabsContent>
-            
-            <TabsContent value="ledger" className="mt-0">
-              <QuantumLedger />
-            </TabsContent>
-            
-            <TabsContent value="entanglement" className="mt-0">
-              <QuantumEntanglement />
-            </TabsContent>
-          </div>
-        </Tabs>
+        <div className="text-center md:text-left">
+          <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#4cc9f0] to-[#7b2cbf] inline-block">
+            Quantum Shield Database
+          </h1>
+          <p className="text-[#4cc9f0]/80 mt-2 max-w-3xl">
+            Manage your quantum cryptographic assets, track quantum operations, and visualize quantum entanglements.
+          </p>
+        </div>
       </div>
-    </MainLayout>
+      
+      <Tabs defaultValue="keys" className="w-full">
+        <TabsList className="grid w-full grid-cols-3 mb-8">
+          <TabsTrigger value="keys" className="data-[state=active]:bg-[#16213e] data-[state=active]:text-[#4cc9f0]">
+            <Key className="mr-2 h-4 w-4" />
+            Quantum Keys
+          </TabsTrigger>
+          <TabsTrigger value="ledger" className="data-[state=active]:bg-[#16213e] data-[state=active]:text-[#4cc9f0]">
+            <BookOpen className="mr-2 h-4 w-4" />
+            Quantum Ledger
+          </TabsTrigger>
+          <TabsTrigger value="entanglement" className="data-[state=active]:bg-[#16213e] data-[state=active]:text-[#4cc9f0]">
+            <Network className="mr-2 h-4 w-4" />
+            Entanglement
+          </TabsTrigger>
+        </TabsList>
+        
+        <div className="bg-[#0c1120]/50 p-6 rounded-lg shadow-lg backdrop-blur-sm border border-[#4cc9f0]/10">
+          <TabsContent value="keys" className="mt-0">
+            <QuantumKeyManager />
+          </TabsContent>
+          
+          <TabsContent value="ledger" className="mt-0">
+            <QuantumLedger />
+          </TabsContent>
+          
+          <TabsContent value="entanglement" className="mt-0">
+            <QuantumEntanglement />
+          </TabsContent>
+        </div>
+      </Tabs>
+    </div>
   );
 }
