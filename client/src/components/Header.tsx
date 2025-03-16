@@ -89,10 +89,9 @@ export default function Header() {
                     key={link.href}
                     href={link.href}
                     onClick={closeMenu}
+                    className="font-space text-xl py-3 block text-[#7b2cbf] hover:text-[#4cc9f0] transition-colors"
                   >
-                    <a className="font-space text-xl py-3 block text-[#7b2cbf] hover:text-[#4cc9f0] transition-colors">
-                      {link.label}
-                    </a>
+                    {link.label}
                   </Link>
                 ))}
               </div>

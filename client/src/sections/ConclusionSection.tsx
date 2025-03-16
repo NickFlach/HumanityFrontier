@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "wouter";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -10,6 +11,8 @@ export default function ConclusionSection() {
   const [cipherName, setCipherName] = useState("");
   const [resonanceCode, setResonanceCode] = useState("");
   const [consent, setConsent] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [, setLocation] = useLocation();
   const { toast } = useToast();
 
   const handleInitialize = async (e: React.FormEvent) => {
@@ -33,29 +36,40 @@ export default function ConclusionSection() {
       return;
     }
     
+    setIsLoading(true);
+    
     try {
       // In a real application, this would create a user account
       // For now, we'll just log the data and show a success message
       await apiRequest("POST", "/api/users", {
         username: cipherName,
         password: resonanceCode, // In a real app, this would be properly hashed
+        cipherName,
+        resonanceCode
       });
       
       toast({
         title: "Initialization Complete",
-        description: "Welcome to the Quantum Shield Initiative",
+        description: "Welcome to the Quantum Shield Initiative. Redirecting to your dashboard...",
       });
       
       // Clear form
       setCipherName("");
       setResonanceCode("");
       setConsent(false);
+      
+      // Redirect to dashboard after a short delay to allow the toast to be read
+      setTimeout(() => {
+        setLocation("/quantum-dashboard");
+      }, 1500);
+      
     } catch (error) {
       toast({
         title: "Initialization Failed",
         description: "Could not initialize your quantum identity",
         variant: "destructive"
       });
+      setIsLoading(false);
     }
   };
 
@@ -122,8 +136,9 @@ export default function ConclusionSection() {
                 <Button 
                   type="submit" 
                   className="bg-[#7b2cbf]/20 hover:bg-[#7b2cbf]/40 transition-colors border border-[#7b2cbf]/50 rounded-lg py-2 px-6 text-[#7b2cbf] font-space"
+                  disabled={isLoading}
                 >
-                  Initialize
+                  {isLoading ? "Initializing..." : "Initialize"}
                 </Button>
               </div>
             </form>
