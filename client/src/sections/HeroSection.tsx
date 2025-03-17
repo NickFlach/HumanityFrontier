@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import QuantumShield from "@/components/quantum/QuantumShield";
+import QuantumAegis from "@/components/quantum/QuantumAegis";
 import QuantumVisualization from "@/components/quantum/QuantumVisualization";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, ChevronDown } from "lucide-react";
@@ -21,7 +21,7 @@ export default function HeroSection() {
       
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <h1 className="text-4xl md:text-6xl font-space font-bold mb-6 leading-tight">
-          <span className="text-[#4cc9f0]">Quantum Shield:</span> The Ciphered Aegis of a New Dawn
+          <span className="text-[#4cc9f0]">Quantum Aegis:</span> The Ciphered Protection of a New Dawn
         </h1>
         <p className="text-xl md:text-2xl font-light opacity-90 mb-10 max-w-2xl mx-auto">
           Before there were alphabets, before ink met parchment, there were symbols cast in shadow, and tongues that spoke in spirals.
@@ -29,7 +29,7 @@ export default function HeroSection() {
         
         <div className="flex justify-center">
           <div className="relative w-64 h-64 animate-[float_3s_ease-in-out_infinite]">
-            <QuantumShield size={256} />
+            <QuantumAegis size={256} />
           </div>
         </div>
         
