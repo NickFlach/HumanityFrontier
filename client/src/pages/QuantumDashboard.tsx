@@ -589,7 +589,7 @@ export default function QuantumDashboard() {
         
         <div className="text-center md:text-left">
           <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#4cc9f0] to-[#7b2cbf] inline-block">
-            Quantum Shield Database
+            Quantum Aegis Database
           </h1>
           <p className="text-[#4cc9f0]/80 mt-2 max-w-3xl">
             Manage your quantum cryptographic assets, track quantum operations, and visualize quantum entanglements.

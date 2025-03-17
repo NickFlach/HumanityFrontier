@@ -35,10 +35,10 @@ export default function Header() {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <Link href="/">
           <div className="flex items-center space-x-3 cursor-pointer">
-            <div className="quantum-shield bg-[#7b2cbf]/20 w-10 h-10 flex items-center justify-center">
-              <div className="quantum-shield bg-[#4cc9f0]/30 w-6 h-6"></div>
+            <div className="quantum-aegis bg-[#7b2cbf]/20 w-10 h-10 flex items-center justify-center">
+              <div className="quantum-aegis bg-[#4cc9f0]/30 w-6 h-6"></div>
             </div>
-            <h1 className="text-xl font-space font-bold text-[#4cc9f0]">QUANTUM SHIELD</h1>
+            <h1 className="text-xl font-space font-bold text-[#4cc9f0]">QUANTUM AEGIS</h1>
           </div>
         </Link>
         
