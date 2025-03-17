@@ -50,7 +50,7 @@ export default function ConclusionSection() {
       
       toast({
         title: "Initialization Complete",
-        description: "Welcome to the Quantum Shield Initiative. Redirecting to your dashboard...",
+        description: "Welcome to the Quantum Aegis Initiative. Redirecting to your dashboard...",
       });
       
       // Clear form
