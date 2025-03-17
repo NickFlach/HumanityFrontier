@@ -82,7 +82,7 @@ export default function ConclusionSection() {
           <div>
             <p className="opacity-90 mb-6">A world does not collapse in a moment, nor is it saved in one. What is needed is a new kind of literacy—not of letters, but of futures yet unwritten.</p>
             
-            <p className="opacity-80 mb-6">The Quantum Shield is no mere construct. It is a linguistic enigma, waiting to be wielded by those who see the unseen.</p>
+            <p className="opacity-80 mb-6">The Quantum Aegis is no mere construct. It is a linguistic enigma, waiting to be wielded by those who see the unseen.</p>
             
             <p className="font-space text-xl text-[#7b2cbf] mt-8">Decode it. Wield it. Become it.</p>
           </div>
@@ -90,7 +90,7 @@ export default function ConclusionSection() {
           <div className="bg-[#1a1a2e]/50 border border-[#4cc9f0]/20 p-6 rounded-xl backdrop-blur-sm relative overflow-hidden">
             <div className="absolute top-0 right-0 w-48 h-48 bg-[#4cc9f0]/5 rounded-full -mt-24 -mr-24"></div>
             
-            <h3 className="font-space text-lg text-[#4cc9f0] mb-6">Join The Quantum Shield Initiative</h3>
+            <h3 className="font-space text-lg text-[#4cc9f0] mb-6">Join The Quantum Aegis Initiative</h3>
             
             <form className="space-y-4" onSubmit={handleInitialize}>
               <div>
