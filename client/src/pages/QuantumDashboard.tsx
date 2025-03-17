@@ -18,7 +18,7 @@ import { Atom, Key, BookOpen, Network } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import MainLayout from "@/layouts/MainLayout";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import QuantumShield from "@/components/quantum/QuantumShield";
+import QuantumAegis from "@/components/quantum/QuantumAegis";
 import CipherVisualization from "@/components/quantum/CipherVisualization";
 import { quantum } from "@/lib/animations";
 
