@@ -122,7 +122,7 @@ function QuantumKeyManager() {
       {isLoading ? (
         <div className="min-h-[200px] flex items-center justify-center">
           <div className="animate-spin relative w-20 h-20">
-            <QuantumShield size={80} animated />
+            <QuantumAegis size={80} animated />
           </div>
         </div>
       ) : (
@@ -298,7 +298,7 @@ function QuantumLedger() {
         ledgerLoading ? (
           <div className="min-h-[200px] flex items-center justify-center">
             <div className="animate-spin relative w-20 h-20">
-              <QuantumShield size={80} animated />
+              <QuantumAegis size={80} animated />
             </div>
           </div>
         ) : (
@@ -506,7 +506,7 @@ function QuantumEntanglement() {
         entanglementsLoading ? (
           <div className="min-h-[200px] flex items-center justify-center">
             <div className="animate-spin relative w-20 h-20">
-              <QuantumShield size={80} animated />
+              <QuantumAegis size={80} animated />
             </div>
           </div>
         ) : (
@@ -584,7 +584,7 @@ export default function QuantumDashboard() {
     <div className="container py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row gap-6 md:items-center mb-8">
         <div className="relative w-24 h-24 flex-shrink-0 mx-auto md:mx-0">
-          <QuantumShield size={96} animated />
+          <QuantumAegis size={96} animated />
         </div>
         
         <div className="text-center md:text-left">
