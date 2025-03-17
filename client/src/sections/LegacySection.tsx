@@ -1,6 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import QuantumShield from "@/components/quantum/QuantumShield";
+import QuantumAegis from "@/components/quantum/QuantumAegis";
 
 export default function LegacySection() {
   return (
@@ -15,7 +15,7 @@ export default function LegacySection() {
           <div className="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-[#4cc9f0]/20 rounded-full"></div>
           
           <div className="flex justify-center">
-            <QuantumShield 
+            <QuantumAegis 
               size={192}
               className="backdrop-blur-sm"
               innerClassName="flex items-center justify-center"
@@ -24,15 +24,15 @@ export default function LegacySection() {
                 <div className="mb-2">LEGACY</div>
                 <div className="text-xs opacity-70">V.1.0.3.5.8.13</div>
               </div>
-            </QuantumShield>
+            </QuantumAegis>
           </div>
           
           <div className="mt-16 text-center max-w-3xl mx-auto">
             <blockquote className="text-xl font-light italic text-[#4cc9f0]/90 leading-relaxed">
-              "The Quantum Shield does not protect merely the present. It encodes a future worth existing in."
+              "The Quantum Aegis does not protect merely the present. It encodes a future worth existing in."
             </blockquote>
             
-            <p className="mt-8 font-space text-lg text-[#7b2cbf]">Let the ones who understand find the path. The glyphs are here. The Shield is ready.</p>
+            <p className="mt-8 font-space text-lg text-[#7b2cbf]">Let the ones who understand find the path. The glyphs are here. The Aegis is ready.</p>
             <p className="mt-2 font-space text-[#7b2cbf]/80">But only to those who know how to read between the lines.</p>
           </div>
           
@@ -40,7 +40,7 @@ export default function LegacySection() {
             <Button 
               className="bg-[#0f0f1a] border border-[#7b2cbf]/50 py-3 px-8 rounded-full font-space text-[#7b2cbf] hover:bg-[#7b2cbf]/10 transition-all duration-300 flex items-center"
             >
-              BECOME THE SHIELD
+              BECOME THE AEGIS
               <ChevronRight className="w-4 h-4 ml-2" />
             </Button>
           </div>
