@@ -6,10 +6,10 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center space-x-3 mb-4 md:mb-0">
-            <div className="quantum-shield bg-[#7b2cbf]/20 w-8 h-8 flex items-center justify-center">
-              <div className="quantum-shield bg-[#4cc9f0]/30 w-5 h-5"></div>
+            <div className="quantum-aegis bg-[#7b2cbf]/20 w-8 h-8 flex items-center justify-center">
+              <div className="quantum-aegis bg-[#4cc9f0]/30 w-5 h-5"></div>
             </div>
-            <span className="font-space text-sm text-[#4cc9f0]">QUANTUM SHIELD INITIATIVE</span>
+            <span className="font-space text-sm text-[#4cc9f0]">QUANTUM AEGIS INITIATIVE</span>
           </div>
           
           <div className="flex space-x-6">
