@@ -36,7 +36,7 @@ export default function CipherVisualization({ input, className }: CipherVisualiz
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     // Calculate hash from input
-    const stringToHash = (input || "quantum shield").toLowerCase();
+    const stringToHash = (input || "quantum aegis").toLowerCase();
     let hash = 0;
     for (let i = 0; i < stringToHash.length; i++) {
       hash = (hash << 5) - hash + stringToHash.charCodeAt(i);

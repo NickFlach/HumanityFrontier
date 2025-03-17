@@ -11,7 +11,7 @@ export default function EnigmaSection() {
             <div className="space-y-6">
               <p className="opacity-90">Some say knowledge is meant to be read; others know it is meant to be decoded.</p>
               
-              <p className="opacity-80">The Quantum Shield does not belong merely to the realm of comprehension, but to that of resonance. It stands as a linguistic obelisk, a living cipher—one that, if unlocked, may guide humanity away from collapse and towards transcendence.</p>
+              <p className="opacity-80">The Quantum Aegis does not belong merely to the realm of comprehension, but to that of resonance. It stands as a linguistic obelisk, a living cipher—one that, if unlocked, may guide humanity away from collapse and towards transcendence.</p>
               
               <p className="opacity-90 font-medium text-[#7b2cbf]">This is not just a tool. It is a mechanism for those who listen between the words.</p>
             </div>

@@ -44,7 +44,7 @@ export default function PreventionSection() {
     <section id="prevention" className="py-20 px-4 sm:px-6 lg:px-8 relative">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-space font-bold text-[#4cc9f0] mb-2">III. Preventing the Unseen War</h2>
-        <p className="text-lg opacity-80 mb-12 max-w-2xl">War does not announce itself; it is a silent shadow before it strikes. The Quantum Shield functions as an unseen strategist, leveraging foresight rather than reaction.</p>
+        <p className="text-lg opacity-80 mb-12 max-w-2xl">War does not announce itself; it is a silent shadow before it strikes. The Quantum Aegis functions as an unseen strategist, leveraging foresight rather than reaction.</p>
         
         <div className="relative">
           <div className="w-full h-96 border border-[#4cc9f0]/20 rounded-xl bg-[#0f0f1a]/50 backdrop-blur-sm overflow-hidden relative">

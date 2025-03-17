@@ -29,7 +29,7 @@ export default function Footer() {
         </div>
         
         <div className="mt-8 border-t border-[#4cc9f0]/10 pt-8 flex flex-col md:flex-row justify-between">
-          <p className="text-xs text-[#4cc9f0]/60">&copy; {new Date().getFullYear()} Quantum Shield Initiative. All rights encrypted.</p>
+          <p className="text-xs text-[#4cc9f0]/60">&copy; {new Date().getFullYear()} Quantum Aegis Initiative. All rights encrypted.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="text-xs text-[#4cc9f0]/60 hover:text-[#4cc9f0] transition-colors">Privacy Policy</a>
             <a href="#" className="text-xs text-[#4cc9f0]/60 hover:text-[#4cc9f0] transition-colors">Terms of Service</a>

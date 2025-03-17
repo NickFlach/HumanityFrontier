@@ -82,7 +82,7 @@ export default function CipherSection() {
     <section id="cipher" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#2d3748]/10 relative">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-space font-bold text-[#4cc9f0] mb-2">IV. The Individual Cipher</h2>
-        <p className="text-lg opacity-80 mb-12 max-w-2xl">But what of the personal? A world saved is nothing if the self is lost. The Quantum Shield does not merely safeguard civilizations—it safeguards the traveler within.</p>
+        <p className="text-lg opacity-80 mb-12 max-w-2xl">But what of the personal? A world saved is nothing if the self is lost. The Quantum Aegis does not merely safeguard civilizations—it safeguards the traveler within.</p>
         
         <div className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8">
           <div className="md:w-1/2">
@@ -95,7 +95,7 @@ export default function CipherSection() {
                 ))}
               </div>
               
-              <p className="font-space text-lg text-[#4cc9f0]/80 mt-8">We are both the shield and the wielder. The key and the lock.</p>
+              <p className="font-space text-lg text-[#4cc9f0]/80 mt-8">We are both the aegis and the wielder. The key and the lock.</p>
             </div>
           </div>
           
