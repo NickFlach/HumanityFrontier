@@ -33,7 +33,7 @@ We welcome contributions in these areas:
 # Fork the repository on GitHub
 # Then clone your fork
 git clone https://github.com/YOUR_USERNAME/HumanityFrontier.git
-cd HumanityFrontier/HumanityFrontier/HumanityFrontier
+cd HumanityFrontier
 
 # Add upstream remote
 git remote add upstream https://github.com/ORIGINAL_OWNER/HumanityFrontier.git

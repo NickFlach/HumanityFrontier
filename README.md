@@ -112,7 +112,7 @@ This platform serves as both:
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/HumanityFrontier.git
-cd HumanityFrontier/HumanityFrontier/HumanityFrontier
+cd HumanityFrontier
 
 # Install dependencies
 npm install

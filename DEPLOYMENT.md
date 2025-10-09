@@ -321,7 +321,7 @@ sudo apt install postgresql postgresql-contrib
 
 # Clone repository
 git clone https://github.com/yourusername/HumanityFrontier.git
-cd HumanityFrontier/HumanityFrontier/HumanityFrontier
+cd HumanityFrontier
 
 # Install dependencies
 npm install --production
