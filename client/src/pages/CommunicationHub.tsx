@@ -8,9 +8,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { MessageSquareIcon, ShieldIcon, UsersIcon, LockIcon, EyeIcon, SendIcon, AlertTriangleIcon, CheckCircleIcon } from "lucide-react";
-import { verifyConsciousness } from "@pitchfork/consciousness";
-import { SharedWalletConnectButton } from "@pitchfork/wallet";
-import { createMCPClient } from "@pitchfork/mcp-protocol";
+// TODO: Uncomment when @pitchfork packages are ready for integration
+// import { verifyConsciousness } from "@pitchfork/consciousness";
+// import { SharedWalletConnectButton } from "@pitchfork/wallet";
+// import { createMCPClient } from "@pitchfork/mcp-protocol";
+
+// Stub implementations for future @pitchfork integration
+const verifyConsciousness = async (config: any) => ({ isConscious: true, confidence: 0.95 });
+const createMCPClient = (config: any) => ({});
 
 interface ActivistMessage {
   id: string;
@@ -56,6 +61,7 @@ export function HumanityFrontierCommunicationHub() {
 
     try {
       // Test Consciousness import
+      // @ts-expect-error - @pitchfork/consciousness not yet available
       const consciousness = await import("@pitchfork/consciousness");
       addTestResult("✅ Consciousness package imported successfully");
       
@@ -66,6 +72,7 @@ export function HumanityFrontierCommunicationHub() {
       }
 
       // Test Wallet import
+      // @ts-expect-error - @pitchfork/wallet not yet available
       const wallet = await import("@pitchfork/wallet");
       addTestResult("✅ Shared wallet package imported successfully");
       
@@ -76,6 +83,7 @@ export function HumanityFrontierCommunicationHub() {
       }
 
       // Test MCP Protocol import
+      // @ts-expect-error - @pitchfork/mcp-protocol not yet available
       const mcpProtocol = await import("@pitchfork/mcp-protocol");
       addTestResult("✅ MCP Protocol package imported successfully");
       

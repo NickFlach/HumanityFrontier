@@ -15,6 +15,23 @@ export default function QuantumVisualization({
 }: QuantumVisualizationProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   
+  const animate = (circle: HTMLDivElement, duration: number) => {
+    const x = (Math.random() - 0.5) * 200;
+    const y = (Math.random() - 0.5) * 200;
+    const opacity = Math.random() * 0.3 + 0.1;
+    
+    const animation = circle.animate([
+      { transform: 'translate(0, 0)', opacity: circle.style.opacity },
+      { transform: `translate(${x}px, ${y}px)`, opacity: opacity.toString() }
+    ], {
+      duration,
+      easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+      fill: 'forwards'
+    });
+    
+    animation.onfinish = () => animate(circle, duration);
+  };
+
   useEffect(() => {
     if (!containerRef.current) return;
     
@@ -36,26 +53,8 @@ export default function QuantumVisualization({
       container.appendChild(circle);
       circles.push(circle);
       
-      // Animation
-      function animate() {
-        const duration = Math.random() * speed + (speed / 2);
-        const x = (Math.random() - 0.5) * 200;
-        const y = (Math.random() - 0.5) * 200;
-        const opacity = Math.random() * 0.3 + 0.1;
-        
-        const animation = circle.animate([
-          { transform: 'translate(0, 0)', opacity: circle.style.opacity },
-          { transform: `translate(${x}px, ${y}px)`, opacity: opacity.toString() }
-        ], {
-          duration,
-          easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
-          fill: 'forwards'
-        });
-        
-        animation.onfinish = animate;
-      }
-      
-      animate();
+      const duration = Math.random() * speed + (speed / 2);
+      animate(circle, duration);
     }
     
     return () => {

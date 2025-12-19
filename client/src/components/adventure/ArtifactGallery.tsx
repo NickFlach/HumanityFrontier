@@ -235,7 +235,10 @@ export default function ArtifactGallery() {
                   }`}
                 >
                   {selectedArtifact.isOwned ? (
-                    <>{React.createElement(getRarityConfig(selectedArtifact.rarity).icon, { className: 'w-10 h-10' })}</>
+                    (() => {
+                      const IconComponent = getRarityConfig(selectedArtifact.rarity).icon;
+                      return <IconComponent className="w-10 h-10" />;
+                    })()
                   ) : (
                     <Lock className="w-10 h-10 text-gray-500" />
                   )}
